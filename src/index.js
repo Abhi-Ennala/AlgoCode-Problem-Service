@@ -1,10 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const { PORT } = require('./config/server.config');
 const apiRouter = require('./routes');
-const BaseError = require('./errors/base.error');
 const errorHanlder = require('./utils/errorHandler');
+const connectToDb = require('./config/db.config');
 
 const app = express();
 
@@ -21,6 +22,8 @@ app.get('/ping', (req, res) => {
 
 app.use(errorHanlder);
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Server is listening on PORT: ${PORT}`);
+  await connectToDb();
+  console.log("Successfully connected to DB");
 });
