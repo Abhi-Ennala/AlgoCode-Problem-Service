@@ -12,7 +12,8 @@ const problemSchema = new mongoose.Schema({
   difficulty: {
     type: String,
     enum: ['easy', 'medium', 'hard'],
-    required: [true, 'Difficulty cannot be empty']
+    required: [true, 'Difficulty cannot be empty'],
+    default: 'easy'
   },
   testCases: [
     {
@@ -31,7 +32,7 @@ const problemSchema = new mongoose.Schema({
   }
 });
 
-// First param is the collection name and the second param is the schema and return a model object using which we query the collection 
+// First param is the collection name and the second param is the schema. It returns a model object using which we query the collection 
 const Problem = mongoose.model('Problem', problemSchema);
 
 module.exports = Problem;
