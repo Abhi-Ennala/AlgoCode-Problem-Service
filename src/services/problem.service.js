@@ -1,3 +1,4 @@
+const logger = require("../config/logger.config");
 const NotFoundError = require("../errors/notFound.error");
 const { markdownSanitizer } = require("../utils");
 
@@ -46,6 +47,7 @@ class ProblemService {
     const deletedProblem = await this.problemRepository.deleteProblem(id);
 
     if(!deletedProblem){
+      logger.error(`Problem with id: ${id} does not exist in the database`);
       throw new NotFoundError("Problem", id);
     }
 

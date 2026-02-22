@@ -1,5 +1,3 @@
-const { deleteProblem } = require("../controllers/problem.controller");
-const NotFoundError = require("../errors/notFound.error");
 const { Problem } = require("../models");
 
 class ProblemRepsitory {
@@ -40,7 +38,7 @@ class ProblemRepsitory {
 
   async updateProblem(id, body) {
     try {
-      const updatedProblem = await Problem.findByIdAndUpdate(id, body);
+      const updatedProblem = await Problem.findByIdAndUpdate(id, body, { new: true });
       return updatedProblem;
     } catch (error) {
       throw error;
