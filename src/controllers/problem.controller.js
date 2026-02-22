@@ -21,9 +21,7 @@ async function addProblem(req, res, next) {
     });
 
   }catch(error){
-
     next(error);
-
   }
 }
 
